@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naufal Fadhlurrohman Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --text: #1a1a2e;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #4cc9f0;
+            --secondary: #4361ee;
+            --accent: #ff006e;
+            --text: #f8f9fa;
+            --bg: #1a1a2e;
+            --card-bg: #16213e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-pill {
+            background-color: rgba(58, 134, 255, 0.1);
+            border: 1px solid var(--primary);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="fixed w-full z-50 bg-opacity-90 backdrop-blur-sm" style="background-color: rgba(var(--bg), 0.9)">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text">NF</a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500">
+                <i id="light-icon" class="fas fa-sun"></i>
+                <i id="dark-icon" class="fas fa-moon" style="display: none;"></i>
+            </button>
+
+            <button id="mobile-menu-button" class="md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-gray-800 bg-opacity-90">
+            <div class="flex flex-col space-y-4 p-6">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text">Naufal Fadhlurrohman</span>
+                </h1>
+                <p class="text-xl mb-8 leading-relaxed">
+                    I build exceptional digital experiences with clean, efficient code and modern technologies. 
+                    Passionate about solving complex problems and creating intuitive user interfaces.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="#contact" class="px-8 py-3 rounded-full gradient-bg text-white font-medium hover:shadow-lg transition-all">
+                        Contact Me
+                    </a>
+                    <a href="#projects" class="px-8 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all">
+                        My Work
+                    </a>
+                    <button id="download-resume" class="px-8 py-3 rounded-full border-2 border-accent text-accent font-medium hover:bg-accent hover:text-white transition-all">
+                        Get My Resume
+                    </button>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/naufalfadh?tab=overview&from=2025-07-01&to=2025-07-31" class="text-2xl hover:text-primary transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/naufal-fadhlurrohman21/" class="text-2xl hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://wa.me/6282121686379/" class="text-2xl hover:text-primary transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute w-full h-full rounded-full bg-gradient-to-br from-primary to-secondary opacity-20 blur-3xl"></div>
+                    <img src="D:\DOKUMEN NAUFAL\POTO_BAJU_ASTRA-removebg-preview-circle-411x411.png" alt="Professional developer at modern workspace with multiple monitors showing code" class="relative rounded-full border-4 border-white shadow-2xl animate-float" style="border-color: var(--primary);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-opacity-30" style="background-color: rgba(var(--card-bg), 0.3)">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">My <span class="gradient-text">Skills</span></h2>
+            <p class="text-center max-w-2xl mx-auto mb-12 fade-in">
+                I've worked with a variety of technologies in web development. Here are some of my core competencies.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Frontend Skills -->
+                <div class="card rounded-xl p-6 text-center fade-in">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full gradient-bg">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Frontend</h3>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Next</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">DevExpress (Component UI ASP.NET)</span>
+                    </div>
+                </div>
+
+                <!-- Backend Skills -->
+                <div class="card rounded-xl p-6 text-center fade-in" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full gradient-bg">
+                        <i class="fas fa-server text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Backend</h3>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Spring</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Laravel</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">CI</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Next.js</span>
+                    </div>
+                </div>
+
+                <!-- Database Skills -->
+                <div class="card rounded-xl p-6 text-center fade-in" style="animation-delay: 0.4s">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full gradient-bg">
+                        <i class="fas fa-database text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Database</h3>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">MySQL</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Oracle</span>
+                    </div>
+                </div>
+
+                <!-- DevOps Skills -->
+                <div class="card rounded-xl p-6 text-center fade-in" style="animation-delay: 0.6s">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full gradient-bg">
+                        <i class="fas fa-cloud text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Programing Languange</h3>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">C</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">C#</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">VB</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">PHP</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">JavaScript</span>
+                    </div>
+                </div>
+
+                <!-- Other Skills -->
+                <div class="card rounded-xl p-6 text-center fade-in" style="animation-delay: 0.8s">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full gradient-bg">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Others</h3>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">REST API</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">Featured <span class="gradient-text">Projects</span></h2>
+            <p class="text-center max-w-2xl mx-auto mb-12 fade-in">
+                Here are some of my notable projects I've worked on. Each project was built with a unique approach to solve specific problems.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card rounded-xl overflow-hidden fade-in">
+                    <div class="h-48 overflow-hidden">
+                        <img src="D:\PORTOFOLIO\assets\img\portfolio\Picture1.png" alt="E-commerce dashboard with product statistics and sales analytics" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Student Journey</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Recording and managing student activities and activities using RFID technology as an identity or identifier. This is a modern solution for managing student activities and activities, utilizing RFID technology integrated with a web system.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">Laravel</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">MYSQL</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">RFID</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/naufalfadh/Student-Journey" class="text-primary hover:underline">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card rounded-xl overflow-hidden fade-in" style="animation-delay: 0.2s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="D:\PORTOFOLIO\assets\img\portfolio\portfolio-4.jpg" alt="Task management application with Kanban board and calendar view" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Digitalisasi Form Inspection Quality Control Machining</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Developing a website for product checking and component recording.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">React.js</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">Spring</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">Android Native</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/naufalfadh/PROJEK-MII" class="text-primary hover:underline">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card rounded-xl overflow-hidden fade-in" style="animation-delay: 0.4s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="D:\PORTOFOLIO\assets\img\portfolio\astrahealth.png" alt="Social media platform interface with user profiles and connection features" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">AstraHealth</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Developing a web-based health data management system for the Campus Health Unit, including student/employee data and drug inventory.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
+                            <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/naufalfadh/AstraHealth" class="text-primary hover:underline">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <a href="https://github.com/naufalfadh" class="inline-block px-8 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-opacity-20" style="background-color: rgba(var(--card-bg), 0.2)">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">Work <span class="gradient-text">Experience</span></h2>
+            <p class="text-center max-w-2xl mx-auto mb-12 fade-in">
+                My professional journey and the roles I've held in the tech industry.
+            </p>
+
+            <div class="relative pl-8 timeline">
+                <!-- Experience 1 -->
+                <div class="relative mb-12 fade-in">
+                    <div class="timeline-item"></div>
+                    <div class="card rounded-xl p-6 ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center mb-2">
+                            <h3 class="text-xl font-semibold">.NET Developer</h3>
+                            <span class="md:ml-4 text-primary">Des 2024 - Juni 2025</span>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">GS Battery Indonesia.</h4>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Internship Fullstack Developer.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
+                            <li>Migrating applications from VB.NET to ASP.NET</li>
+                            <li>Creating websites using .NET and SQL Server with DevExpress UI components</li>
+                            <li>Releasing MAUI applications to Android TV</li>
+                            <li>Developing RESTful API</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="relative mb-12 fade-in" style="animation-delay: 0.2s">
+                    <div class="timeline-item"></div>
+                    <div class="card rounded-xl p-6 ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center mb-2">
+                            <h3 class="text-xl font-semibold">Fullstack Developer - Project Based</h3>
+                            <span class="md:ml-4 text-primary">Sep 2024 - Nov 2024</span>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">Astra Honda Motor</h4>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Migrating legacy applications, monitoring IP document uploads, Ensuring part change information is monitored, supporting PQE decisions.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
+                            <li>Migration results from the legacy system used by the PQE department to upload and monitor 
+                                IP (Part Information) data from Excel documents. IP data contains information on changes to
+                                drawing specifications, standard tolerances, materials, processes, and details related to part
+                                usage.
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="relative fade-in" style="animation-delay: 0.4s">
+                    <div class="timeline-item"></div>
+                    <div class="card rounded-xl p-6 ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center mb-2">
+                            <h3 class="text-xl font-semibold">Waspang Staff</h3>
+                            <span class="md:ml-4 text-primary">Des 2021 - Nov 2022</span>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">Telkom Akses Indonesia</h4>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">
+                            Mapping new networks and moving old networks.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
+                            <li>Making drawings of a building and layout of a network path in AutoCad.</li>
+                            <li>Mapping points from network creation and external network mapping on Google Earth.</li>
+                            <li>Supervision of network construction carried out by technicians in the field.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">Let's <span class="gradient-text">Connect</span></h2>
+            <p class="text-center max-w-2xl mx-auto mb-12 fade-in">
+                Have a project in mind or want to discuss potential opportunities? I'd love to hear from you!
+            </p>
+
+            <div class="flex justify-center">
+                <div class="fade-in max-w-md w-full" style="animation-delay: 0.2s">
+                    <div class="card rounded-xl p-8 h-full flex flex-col justify-center">
+                        <div class="flex items-start mb-8">
+                            <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Email Me</h3>
+                                <p class="text-gray-500 dark:text-gray-400">fadlurahman03@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-8">
+                            <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Call Me</h3>
+                                <p class="text-gray-500 dark:text-gray-400">+6282121686379</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-8">
+                            <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Location</h3>
+                                <p class="text-gray-500 dark:text-gray-400">Kabupaten Bekasi</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-center space-x-4">
+                            <a href="https://github.com/naufalfadh?tab=overview&from=2025-07-01&to=2025-07-31" class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/naufal-fadhlurrohman21/" class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://wa.me/6282121686379/" class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.instagram.com/fadlurahmannn_" class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center mb-4">
+                <a href="https://github.com/naufalfadh?tab=overview&from=2025-07-01&to=2025-07-31" class="mx-2 hover:text-primary transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/naufal-fadhlurrohman21/" class="mx-2 hover:text-primary transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://wa.me/6282121686379/" class="mx-2 hover:text-primary transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/fadlurahmannn_" class="mx-2 hover:text-primary transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p>© 2025 Naufal Fadhlurrohman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('light-icon');
+        const darkIcon = document.getElementById('dark-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or use default
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        
+        if (savedTheme === 'dark') {
+            lightIcon.style.display = 'none';
+            darkIcon.style.display = 'block';
+        } else {
+            lightIcon.style.display = 'block';
+            darkIcon.style.display = 'none';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'block';
+            } else {
+                lightIcon.style.display = 'block';
+                darkIcon.style.display = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Resume download functionality
+        document.getElementById('download-resume').addEventListener('click', () => {
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = 'path/to/your/resume.pdf'; // Update with your actual resume path
+            link.download = 'YourName_Resume.pdf'; // Update with your name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        
+    </script>
+</body>
+</html>
+
