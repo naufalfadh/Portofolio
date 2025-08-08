@@ -145,6 +145,43 @@
         .language-toggle button:hover:not(.active) {
             background: rgba(58, 134, 255, 0.1);
         }
+
+        /* Name Animation Styles */
+        .typing-name {
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .cursor {
+            display: inline-block;
+            animation: blink 1s infinite;
+            font-weight: normal;
+            color: var(--primary);
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(58, 134, 255, 0.6), 0 0 30px rgba(58, 134, 255, 0.4);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .typing-name {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -192,7 +229,9 @@
         <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 fade-in">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    <span data-translate="hero_greeting">Hi, I'm</span> <span class="gradient-text">Naufal Fadhlurrohman</span>
+                    <span data-translate="hero_greeting">Hi, I'm</span> 
+                    <span class="gradient-text typing-name" id="typed-name"></span>
+                    <span class="cursor" id="cursor">|</span>
                 </h1>
                 <p class="text-xl mb-8 leading-relaxed" data-translate="hero_description">
                     I build exceptional digital experiences with clean, efficient code and modern technologies. 
@@ -662,6 +701,10 @@
         // Current language
         let currentLanguage = localStorage.getItem('language') || 'en';
 
+        // Name typing animation variables
+        let nameAnimationTimeout;
+        let isTyping = false;
+
         // Language switching functionality
         function switchLanguage(lang) {
             currentLanguage = lang;
@@ -682,11 +725,59 @@
             
             // Update document language attribute
             document.documentElement.lang = lang;
+
+            // Restart name animation with new language if needed
+            if (lang === 'id') {
+                startNameAnimation('Naufal Fadhlurrohman');
+            } else {
+                startNameAnimation('Naufal Fadhlurrohman');
+            }
         }
 
-        // Initialize language on page load
+        // Name typing animation function
+        function startNameAnimation(name) {
+            if (isTyping) return;
+            
+            const typedNameElement = document.getElementById('typed-name');
+            const cursor = document.getElementById('cursor');
+            
+            if (!typedNameElement || !cursor) return;
+            
+            isTyping = true;
+            let i = 0;
+            
+            // Clear existing content
+            typedNameElement.textContent = '';
+            cursor.style.animation = 'none';
+            
+            function typeWriter() {
+                if (i < name.length) {
+                    typedNameElement.textContent += name.charAt(i);
+                    i++;
+                    nameAnimationTimeout = setTimeout(typeWriter, 100); // Adjust speed here
+                } else {
+                    // After typing is complete, start the cursor blinking
+                    cursor.style.animation = 'blink 1s infinite';
+                    isTyping = false;
+                    
+                    // Optional: Restart typing after a delay
+                    nameAnimationTimeout = setTimeout(() => {
+                        startNameAnimation(name);
+                    }, 4000); // Restart after 4 seconds
+                }
+            }
+            
+            typeWriter();
+        }
+
+        // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', () => {
             switchLanguage(currentLanguage);
+            
+            // Start name animation after a short delay
+            setTimeout(() => {
+                startNameAnimation('Naufal Fadhlurrohman');
+            }, 800);
         });
 
         // Language button event listeners
@@ -789,6 +880,13 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        });
+
+        // Clean up timeouts when page is about to unload
+        window.addEventListener('beforeunload', () => {
+            if (nameAnimationTimeout) {
+                clearTimeout(nameAnimationTimeout);
+            }
         });
     </script>
 </body>
