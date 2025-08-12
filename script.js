@@ -23,6 +23,7 @@ const translations = {
         project2_title: "Digitalisasi Form Inspection Quality Control Machining",
         project2_description: "Developing a website for product checking and component recording.",
         project3_description: "Developing a web-based health data management system for the Campus Health Unit, including student/employee data and drug inventory.",
+        project4_description: "Digitizing a job application and approval where the work is done through a paper form then digitizing it by creating a website where all the work goes through the website system.",
         view_code: "View Code",
         view_all_projects: "View All Projects",
         experience_title_1: "Work",
@@ -75,6 +76,7 @@ const translations = {
         project2_title: "Digitalisasi Form Inspeksi Quality Control Machining",
         project2_description: "Mengembangkan website untuk pengecekan produk dan pencatatan komponen.",
         project3_description: "Mengembangkan sistem manajemen data kesehatan berbasis web untuk Unit Kesehatan Kampus, termasuk data mahasiswa/karyawan dan inventaris obat.",
+        project4_description: "Mendigitalisasikan sebuah pekerjaan permohonan dan persetujuan yang dimana pekerjaan itu dilakukan melalui formulir pada kertas lalu di digitalisasi dengan dibuatkan sebuah website yang dimana semua pekerjaan tersebut melalui sistem website itu.",
         view_code: "Lihat Kode",
         view_all_projects: "Lihat Semua Projek",
         experience_title_1: "Pengalaman",
@@ -112,6 +114,12 @@ let currentLanguage = localStorage.getItem('language') || 'en';
 // Name typing animation variables
 let nameAnimationTimeout;
 let isTyping = false;
+
+// Carousel variables
+let currentSlide = 0;
+let totalSlides = 4;
+let slidesToShow = 1;
+let carouselAutoPlay;
 
 // Language switching functionality
 function switchLanguage(lang) {
@@ -178,6 +186,91 @@ function startNameAnimation(name) {
     typeWriter();
 }
 
+// Carousel functionality
+function initCarousel() {
+    const carousel = document.getElementById('projectCarousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    function getSlidesToShow() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 768) return 2;
+        return 1;
+    }
+    
+    function updateCarousel() {
+        slidesToShow = getSlidesToShow();
+        const slideWidth = 100 / slidesToShow;
+        const translateX = -(currentSlide * slideWidth);
+        carousel.style.transform = `translateX(${translateX}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function nextSlide() {
+        const maxSlide = totalSlides - slidesToShow;
+        currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+        updateCarousel();
+    }
+    
+    function prevSlide() {
+        const maxSlide = totalSlides - slidesToShow;
+        currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+        updateCarousel();
+    }
+    
+    function startAutoPlay() {
+        carouselAutoPlay = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoPlay() {
+        if (carouselAutoPlay) {
+            clearInterval(carouselAutoPlay);
+        }
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        prevSlide();
+        startAutoPlay();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        nextSlide();
+        startAutoPlay();
+    });
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopAutoPlay();
+            currentSlide = index;
+            updateCarousel();
+            startAutoPlay();
+        });
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        updateCarousel();
+    });
+    
+    // Pause autoplay on hover
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+    
+    // Initialize
+    updateCarousel();
+    startAutoPlay();
+}
+
 // Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
     switchLanguage(currentLanguage);
@@ -186,6 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         startNameAnimation('Naufal Fadhlurrohman');
     }, 800);
+    
+    // Initialize carousel
+    initCarousel();
 });
 
 // Language button event listeners
@@ -230,9 +326,11 @@ themeToggle.addEventListener('click', () => {
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
+if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -249,7 +347,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
             
             // Close mobile menu if open
-            mobileMenu.classList.add('hidden');
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
         }
     });
 });
@@ -272,27 +372,107 @@ fadeElements.forEach(element => {
 }); 
 
 // Resume download functionality
-document.getElementById('download-resume').addEventListener('click', () => {
-    // Create a link element
-    const link = document.createElement('a');
-    
-    // Use different resume based on current language
-    if (currentLanguage === 'id') {
-        link.href = "./assets/CV ATS NAUFAL FADHLURROHMAN V.IND.pdf";
-        link.download = 'CV NAUFAL FADHLURROHMAN (Bahasa Indonesia).pdf';
-    } else {
-        link.href = "./assets/CV ATS NAUFAL FADHLURROHMAN V.ENG.pdf";
-        link.download = 'CV NAUFAL FADHLURROHMAN (English).pdf';
-    }
-    
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
+const downloadResumeBtn = document.getElementById('download-resume');
+if (downloadResumeBtn) {
+    downloadResumeBtn.addEventListener('click', () => {
+        // Create a link element
+        const link = document.createElement('a');
+        
+        // Use different resume based on current language
+        if (currentLanguage === 'id') {
+            link.href = "./assets/CV ATS NAUFAL FADHLURROHMAN V.IND.pdf";
+            link.download = 'CV NAUFAL FADHLURROHMAN (Bahasa Indonesia).pdf';
+        } else {
+            link.href = "./assets/CV ATS NAUFAL FADHLURROHMAN V.ENG.pdf";
+            link.download = 'CV NAUFAL FADHLURROHMAN (English).pdf';
+        }
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
 
 // Clean up timeouts when page is about to unload
 window.addEventListener('beforeunload', () => {
     if (nameAnimationTimeout) {
         clearTimeout(nameAnimationTimeout);
     }
+    if (carouselAutoPlay) {
+        clearInterval(carouselAutoPlay);
+    }
+});
+
+// Touch/swipe support for carousel on mobile devices
+function addTouchSupport() {
+    const carousel = document.getElementById('projectCarousel');
+    if (!carousel) return;
+    
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        // Stop autoplay during touch
+        if (carouselAutoPlay) {
+            clearInterval(carouselAutoPlay);
+        }
+    });
+    
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        endX = e.touches[0].clientX;
+    });
+    
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const threshold = 50; // Minimum swipe distance
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                const maxSlide = totalSlides - slidesToShow;
+                currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            } else {
+                // Swipe right - previous slide
+                const maxSlide = totalSlides - slidesToShow;
+                currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+            }
+            
+            // Update carousel
+            const slideWidth = 100 / slidesToShow;
+            const translateX = -(currentSlide * slideWidth);
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Restart autoplay
+        carouselAutoPlay = setInterval(() => {
+            const maxSlide = totalSlides - slidesToShow;
+            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            const slideWidth = 100 / slidesToShow;
+            const translateX = -(currentSlide * slideWidth);
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }, 5000);
+    });
+}
+
+// Initialize touch support after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    addTouchSupport();
 });
