@@ -282,17 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize carousel
     initCarousel();
-    
-     // ✅ Track visitor on page load
-    fetch("/api/track", { 
-        method: "POST" 
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("Visitor tracked:", data); 
-        // sementara tampil di console browser
-    })
-    .catch(err => console.error("Tracking error:", err));
 });
 
 // Language button event listeners
