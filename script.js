@@ -270,6 +270,28 @@ function initCarousel() {
     updateCarousel();
     startAutoPlay();
 }
+// Fungsi untuk memanggil API penghitung pengunjung
+async function updateVisitorCount() {
+    try {
+        const response = await fetch('/api/count');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const visitorCountElement = document.getElementById('visitor-count');
+        if (visitorCountElement) {
+            // Perbarui teks dengan jumlah pengunjung
+            const currentLang = localStorage.getItem('language') || 'en';
+            if (currentLang === 'id') {
+                visitorCountElement.textContent = `Total pengunjung: ${data.count}`;
+            } else {
+                visitorCountElement.textContent = `Total visitors: ${data.count}`;
+            }
+        }
+    } catch (error) {
+        console.error("Gagal mendapatkan jumlah pengunjung:", error);
+    }
+}
 
 // Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -282,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize carousel
     initCarousel();
+    updateVisitorCount();
 });
 
 // Language button event listeners
