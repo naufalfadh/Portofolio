@@ -101,13 +101,15 @@ body {
 
 .fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(6px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-in.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
 .language-toggle {
@@ -348,4 +350,13 @@ body {
     .carousel-slide {
         width: 50% !important;
     }
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }

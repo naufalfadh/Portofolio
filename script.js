@@ -7,7 +7,7 @@ const translations = {
         nav_experience: "Experience",
         nav_contact: "Contact",
         hero_greeting: "Hi, I'm",
-        hero_description: "I build exceptional digital experiences with clean, efficient code and modern technologies. Passionate about solving complex problems and creating intuitive user interfaces.",
+        hero_description: "Fullstack Developer specializing in .NET & Web Applications. Experienced in building enterprise systems, APIs, and internal tools.",
         hero_contact: "Contact Me",
         hero_work: "My Work",
         hero_resume: "Get My Resume",
@@ -32,7 +32,7 @@ const translations = {
         exp_section_description: "My professional experience and educational background in the tech industry.",
         // Tab buttons
         tab_work: "Work Experience",
-        tab_edu: "Education",
+        tab_edu: "Education & Organizations",
         // Work Experience
         exp0_period: "Nov 2025 - April 2026",
         exp0_role: "Contract Based.",
@@ -93,7 +93,7 @@ const translations = {
         nav_experience: "Pengalaman",
         nav_contact: "Kontak",
         hero_greeting: "Halo, Saya",
-        hero_description: "Saya membangun pengalaman digital yang luar biasa dengan kode yang bersih, efisien, dan teknologi modern. Bersemangat dalam memecahkan masalah kompleks dan menciptakan antarmuka pengguna yang intuitif.",
+        hero_description: "Pengembang Full Stack yang berspesialisasi dalam .NET dan Aplikasi Web. Berpengalaman dalam membangun sistem perusahaan, API, dan alat internal.",
         hero_contact: "Hubungi Saya",
         hero_work: "Karya Saya",
         hero_resume: "Unduh CV Saya",
@@ -118,7 +118,7 @@ const translations = {
         exp_section_description: "Pengalaman profesional dan latar belakang pendidikan saya di industri teknologi.",
         // Tab buttons
         tab_work: "Pengalaman Kerja",
-        tab_edu: "Pendidikan",
+        tab_edu: "Pendidikan & Organisasi",
         // Work Experience
         exp0_period: "Nov 2025 - April 2026",
         exp0_role: "Berbasis Kontrak.",
@@ -549,4 +549,75 @@ function addTouchSupport() {
 
 document.addEventListener('DOMContentLoaded', () => {
     addTouchSupport();
+});
+
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        card.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px) scale(1.03)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translate(0,0) scale(1)';
+    });
+});
+
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('#home');
+    const scrollY = window.scrollY;
+
+    if (hero) {
+        hero.style.transform = `translateY(${scrollY * 0.2}px)`;
+    }
+});
+
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        z: Math.random() * 2,
+        size: Math.random() * 2
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        p.y += p.z;
+
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.z, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(58,134,255,0.6)";
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+let ticking = false;
+
+document.addEventListener('mousemove', (e) => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // semua efek mouse di sini
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
