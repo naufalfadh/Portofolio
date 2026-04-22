@@ -77,14 +77,9 @@ const translations = {
         org2_task1: "Assist in the implementation of each event held by AGI each year.",
         org2_task2: "Coordinate with food vendors to ensure timely delivery.",
         org2_task3: "Manage and supervise culinary bazaar stands and be responsible for overseeing food supply and distribution.",
-        // Contact
-        contact_title_1: "Let's",
-        contact_title_2: "Connect",
-        contact_description: "Have a project in mind or want to discuss potential opportunities? I'd love to hear from you!",
-        contact_email: "Email Me",
-        contact_phone: "Call Me",
-        contact_location: "Location",
-        footer_copyright: "© 2025 Naufal Fadhlurrohman. All rights reserved."
+        contact_title_main: "Let's work together",
+        footer_copyright: "© 2026 Naufal Fadhlurrohman."
+        
     },
     id: {
         nav_home: "Beranda",
@@ -164,22 +159,13 @@ const translations = {
         org2_task2: "Berkoordinasi dengan vendor makanan untuk memastikan pengiriman tepat waktu.",
         org2_task3: "Mengelola dan mengawasi stand bazar kuliner serta bertanggung jawab atas pengawasan pasokan dan distribusi makanan.",
         // Contact
-        contact_title_1: "Mari",
-        contact_title_2: "Terhubung",
-        contact_description: "Punya proyek dalam pikiran atau ingin mendiskusikan peluang potensial? Saya akan senang mendengar dari Anda!",
-        contact_email: "Email Saya",
-        contact_phone: "Telepon Saya",
-        contact_location: "Lokasi",
-        footer_copyright: "© 2025 Naufal Fadhlurrohman. Semua hak dilindungi."
+        contact_title_main: "Ayo bekerja sama",
+        footer_copyright: "© 2026 Naufal Fadhlurrohman."
     }
 };
 
 // Current language
 let currentLanguage = localStorage.getItem('language') || 'en';
-
-// Name typing animation variables
-let nameAnimationTimeout;
-let isTyping = false;
 
 // Carousel variables
 let currentSlide = 0;
@@ -277,40 +263,8 @@ function switchLanguage(lang) {
     });
     
     document.documentElement.lang = lang;
-    startNameAnimation('Naufal Fadhlurrohman');
 }
 
-// Name typing animation function
-function startNameAnimation(name) {
-    if (isTyping) return;
-    
-    const typedNameElement = document.getElementById('typed-name');
-    const cursor = document.getElementById('cursor');
-    
-    if (!typedNameElement || !cursor) return;
-    
-    isTyping = true;
-    let i = 0;
-    
-    typedNameElement.textContent = '';
-    cursor.style.animation = 'none';
-    
-    function typeWriter() {
-        if (i < name.length) {
-            typedNameElement.textContent += name.charAt(i);
-            i++;
-            nameAnimationTimeout = setTimeout(typeWriter, 100);
-        } else {
-            cursor.style.animation = 'blink 1s infinite';
-            isTyping = false;
-            nameAnimationTimeout = setTimeout(() => {
-                startNameAnimation(name);
-            }, 4000);
-        }
-    }
-    
-    typeWriter();
-}
 
 // Carousel functionality
 function initCarousel() {
@@ -381,10 +335,6 @@ function initCarousel() {
 // Initialize everything on page load
 document.addEventListener('DOMContentLoaded', () => {
     switchLanguage(currentLanguage);
-    
-    setTimeout(() => {
-        startNameAnimation('Naufal Fadhlurrohman');
-    }, 800);
     
     initCarousel();
     initHeroSlideshow();
@@ -483,7 +433,6 @@ if (downloadResumeBtn) {
 
 // Clean up timeouts
 window.addEventListener('beforeunload', () => {
-    if (nameAnimationTimeout) clearTimeout(nameAnimationTimeout);
     if (carouselAutoPlay) clearInterval(carouselAutoPlay);
 });
 
@@ -565,15 +514,6 @@ document.querySelectorAll('.card').forEach(card => {
     });
 });
 
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('#home');
-    const scrollY = window.scrollY;
-
-    if (hero) {
-        hero.style.transform = `translateY(${scrollY * 0.2}px)`;
-    }
-});
-
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -620,4 +560,49 @@ document.addEventListener('mousemove', (e) => {
         });
         ticking = true;
     }
+});
+
+const backToTopBtn = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+});
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ======================== SKILLS BENTO - SPOTLIGHT & PILL ANIMATION ========================
+function initSkillsBento() {
+    // Spotlight mouse follow
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+        const glow = card.querySelector('.bento-glow');
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            glow.style.left = (e.clientX - rect.left) + 'px';
+            glow.style.top  = (e.clientY - rect.top) + 'px';
+        });
+    });
+
+    // Staggered pill reveal on scroll
+    const bentoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('pills-visible');
+                bentoObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.bento-card').forEach(card => {
+        bentoObserver.observe(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSkillsBento();
 });
