@@ -12,248 +12,276 @@
 
 
 <body class="min-h-screen">
-    <header class="fixed w-full z-50 bg-opacity-90 backdrop-blur-sm" style="background-color: rgba(var(--bg), 0.9)">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text">NF</a>
 
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link" data-translate="nav_home">Home</a>
-                <a href="#skills" class="nav-link" data-translate="nav_skills">Skills</a>
-                <a href="#projects" class="nav-link" data-translate="nav_projects">Projects</a>
-                <a href="#experience" class="nav-link" data-translate="nav_experience">Experience</a>
-                <a href="#contact" class="nav-link" data-translate="nav_contact">Contact</a>
+    <!-- ======================== FLOATING DOCK NAVBAR (FIXED EN/ID) ======================== -->
+    <header
+        class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-2xl transition-all duration-300"
+        id="main-header">
+        <div
+            class="w-full bg-[#1a1a2e] bg-opacity-80 backdrop-blur-xl rounded-2xl border border-white border-opacity-5 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-2">
+
+            <!-- Brand Indicator -->
+            <a href="#"
+                class="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center font-black text-sm tracking-tighter gradient-text hover:scale-105 transition-transform flex-shrink-0">
+                NF
+            </a>
+
+            <!-- Desktop Links -->
+            <nav
+                class="hidden sm:flex items-center bg-gray-950 bg-opacity-40 rounded-xl p-1 border border-white border-opacity-5 overflow-x-auto select-none">
+                <a href="#home" class="nav-dock-link" data-translate="nav_home">Home</a>
+                <a href="#skills" class="nav-dock-link" data-translate="nav_skills">Skills</a>
+                <a href="#projects" class="nav-dock-link" data-translate="nav_projects">Projects</a>
+                <a href="#experience" class="nav-dock-link" data-translate="nav_experience">Experience</a>
+                <a href="#contact" class="nav-dock-link" data-translate="nav_contact">Contact</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
-                <div class="language-toggle">
+            <!-- Right Side Controls (FIXED: Always Visible EN/ID) -->
+            <div class="flex items-center gap-2 flex-shrink-0">
+                <div class="language-toggle flex"> <!-- Menghilangkan hidden xs:flex agar tombol bahasa tidak hilang -->
                     <button id="lang-en" class="active">EN</button>
                     <button id="lang-id">ID</button>
                 </div>
 
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500">
-                    <i id="light-icon" class="fas fa-sun"></i>
-                    <i id="dark-icon" class="fas fa-moon" style="display: none;"></i>
-                </button>
 
-                <button id="mobile-menu-button" class="md:hidden">
-                    <i class="fas fa-bars text-2xl"></i>
+                <!-- Small Mobile Menu Button -->
+                <button id="mobile-menu-button"
+                    class="sm:hidden text-gray-400 hover:text-white p-2.5 transition-colors">
+                    <i class="fas fa-bars text-sm"></i>
                 </button>
             </div>
+
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-gray-800 bg-opacity-90">
-            <div class="flex flex-col space-y-4 p-6">
-                <a href="#home" class="nav-link" data-translate="nav_home">Home</a>
-                <a href="#skills" class="nav-link" data-translate="nav_skills">Skills</a>
-                <a href="#projects" class="nav-link" data-translate="nav_projects">Projects</a>
-                <a href="#experience" class="nav-link" data-translate="nav_experience">Experience</a>
-                <a href="#contact" class="nav-link" data-translate="nav_contact">Contact</a>
+        <!-- Mobile Menu Dropdown (Pops UP) -->
+        <div id="mobile-menu" class="hidden sm:hidden absolute bottom-full left-0 w-full pb-3">
+            <div
+                class="bg-[#1a1a2e] bg-opacity-95 backdrop-blur-lg rounded-2xl border border-white border-opacity-5 p-4 shadow-2xl flex flex-col space-y-2">
+                <a href="#home" class="nav-link-mobile" data-translate="nav_home">Home</a>
+                <a href="#skills" class="nav-link-mobile" data-translate="nav_skills">Skills</a>
+                <a href="#projects" class="nav-link-mobile" data-translate="nav_projects">Projects</a>
+                <a href="#experience" class="nav-link-mobile" data-translate="nav_experience">Experience</a>
+                <a href="#contact" class="nav-link-mobile" data-translate="nav_contact">Contact</a>
             </div>
         </div>
     </header>
-
     <canvas id="bg-canvas"></canvas>
 
-    <section id="home" class="min-h-screen flex items-center pt-20 overflow-hidden relative">
-        <div class="container mx-auto">
-            <div class="hero-grid">
+    <!-- ======================== BRUTALIST MODERN HERO (TAMPILAN AWAL) ======================== -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-opacity-30">
+        <div class="container mx-auto px-6 relative z-10 min-h-screen flex flex-col justify-between py-12">
 
-                <!-- LEFT: Text Content -->
-                <div class="hero-text fade-in">
+            <!-- TOP ROW: Brutalist Corner Tags -->
+            <div
+                class="flex justify-between items-center w-full uppercase tracking-widest text-xs font-bold opacity-60">
+                <span data-translate="hero_top_left">Fullstack/.NET Specialist</span>
+                <span>2026</span>
+            </div>
 
-                    <!-- Main heading -->
-                    <h1 class="hero-heading">
-                        <span class="hero-greeting" data-translate="hero_greeting">Hi, I'm</span>
-                        <span class="hero-name gradient-text">Naufal Fadhlurrohman</span>
-                    </h1>
-                    <!-- Role tag -->
-                    <div class="hero-role-row">
-                        <span class="hero-role-pill">Fullstack Developer</span>
-                        <span class="hero-role-pill">.NET Specialist</span>
-                        <span class="hero-role-pill">API Engineer</span>
-                    </div>
+            <!-- MIDDLE ROW: Big Typography & Layered Center Photo -->
+            <div class="relative w-full flex justify-center items-center my-auto flex-grow h-[450px] md:h-[550px]">
+                <!-- Giant Background Text -->
+                <h1 class="giant-bg-text select-none">PORTOFOLIO</h1>
 
-                    <!-- Description -->
-                    <p class="hero-desc" data-translate="hero_description">
-                        Fullstack Developer specializing in .NET & Web Applications.
-                        Experienced in building enterprise systems, APIs, and internal tools.
-                    </p>
-                    <!-- CTA Buttons -->
-                    <div class="hero-cta">
-                        <a href="#contact" class="cta-primary" data-translate="hero_contact">
-                            <span>Contact Me</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#projects" class="cta-secondary" data-translate="hero_work">
-                            My Work
-                        </a>
-                        <button id="download-resume" class="cta-ghost" data-translate="hero_resume">
-                            <i class="fas fa-download"></i>
-                            <span>Resume</span>
-                        </button>
-                    </div>
+                <!-- ======================== INTERACTIVE PHYSICAL ID CARD (3D FLIP) ======================== -->
+                <div class="hero-id-card-area select-none">
+                    <!-- Tali Lanyard Digital -->
+                    <div class="id-card-lanyard-string"></div>
 
+                    <!-- Badan ID Card Utama -->
+                    <div class="id-card-body-container" id="interactive-id-card">
+                        <!-- Badge Klip Pengait Lanyard -->
+                        <div class="id-card-clip"></div>
 
-                </div>
+                        <!-- 3D Card Flipper Wrapper -->
+                        <div class="id-card-flipper">
 
-                <!-- RIGHT: Photo -->
-                <div class="hero-visual fade-in" style="animation-delay: 0.3s">
-
-                    <!-- Decorative ring -->
-                    <div class="hero-ring hero-ring-1"></div>
-                    <div class="hero-ring hero-ring-2"></div>
-
-                    <!-- Photo wrapper -->
-                    <div class="hero-photo-wrap">
-                        <div class="hero-slideshow animate-float">
-                            <div class="hero-slide active">
-                                <img src="./assets/img/portfolio/EST02632.jpg" alt="Naufal" class="hero-slide-img">
+                            <!-- SISI DEPAN (FRONT FACE) -->
+                            <div class="id-card-front">
+                                <div class="id-card-photo-wrapper">
+                                    <img src="./assets/img/portfolio/EST02632.png" alt="Naufal Front"
+                                        class="id-card-img-render">
+                                </div>
+                                <!-- Indikator Geser/Klik Kecil Modern di Bagian Bawah Kartu -->
+                                <div
+                                    class="absolute bottom-3 left-0 right-0 text-center text-[9px] font-mono tracking-widest text-gray-500 uppercase">
+                                    <i class="fas fa-sync-alt animate-spin-slow mr-1"></i> Click to Flip Card
+                                </div>
                             </div>
-                            <div class="hero-slide">
-                                <img src="./assets/img/portfolio/A1.jpg" alt="Naufal" class="hero-slide-img">
+
+                            <!-- SISI BELAKANG (BACK FACE) -->
+                            <div class="id-card-back">
+                                <div class="id-card-photo-wrapper">
+                                    <img src="./assets/img/portfolio/A1.png" alt="Naufal Back"
+                                        class="id-card-img-render">
+                                </div>
+                                <!-- Indikator Aksen Barcode Karyawan Estetika Manufaktur -->
+                                <div
+                                    class="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 h-6 opacity-30 flex items-center justify-center border-t border-b border-white border-dashed text-[8px] font-mono tracking-[0.3em] text-white">
+                                    ||||| NAUFAL-F |||||
+                                </div>
                             </div>
-                            <div class="hero-dots">
-                                <span class="hero-dot active" data-index="0"></span>
-                                <span class="hero-dot" data-index="1"></span>
-                            </div>
+
                         </div>
+
                     </div>
-
-                    <!-- Floating tech chips -->
-                    <div class="tech-chip chip-1"><i class="fab fa-microsoft"></i> ASP.NET</div>
-                    <div class="tech-chip chip-2"><i class="fab fa-react"></i> React</div>
-                    <div class="tech-chip chip-3"><i class="fas fa-database"></i> SQL Server</div>
-                    <div class="tech-chip chip-4"><i class="fab fa-java"></i> Java</div>
-
+                </div>
+                <!-- Wireframe Globe Decorative Icon -->
+                <div
+                    class="absolute left-4 bottom-12 hidden md:flex items-center space-x-1 opacity-20 dark:opacity-40 text-4xl">
+                    <i class="fas fa-globe"></i>
+                    <i class="fas fa-network-wired"></i>
                 </div>
             </div>
 
-            <!-- Scroll indicator -->
-            <div class="scroll-indicator fade-in" style="animation-delay: 1s">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
+            <!-- BOTTOM ROW: Split Content -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full pt-6 border-t border-gray-500 border-opacity-10">
+                <!-- Left Corner: Auth Statement & CTA -->
+                <div class="space-y-4 max-w-md">
+                    <p class="text-xs md:text-sm leading-relaxed opacity-70" data-translate="hero_description">
+                        This portfolio showcases authentic enterprise software development experience without any
+                        fabrication, specialized in .NET ecosystem & system integrations.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="#contact" class="cta-primary py-2 px-5 text-xs rounded-lg"
+                            data-translate="hero_contact">Contact Me</a>
+                        <button id="download-resume-dock" class="cta-ghost py-2 px-4 text-xs rounded-lg"><i
+                                class="fas fa-download mr-1"></i> Resume</button>
+                    </div>
                 </div>
-                <span data-translate="hero_scroll">Scroll down</span>
+
+                <!-- Right Corner: Name and Professional Branding -->
+                <div class="text-left md:text-right space-y-1">
+                    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                        Naufal Fadhlurrohman
+                    </h2>
+                    <p class="gradient-text font-bold text-sm md:text-base tracking-wide uppercase">
+                        Fullstack Developer / API Engineer / .NET Specialist
+                    </p>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <section id="skills" class="py-20 overflow-hidden">
-        <div class="container mx-auto">
+    <section id="skills" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
 
-            <!-- Header -->
-            <div class="mb-4 fade-in">
-                <p class="text-xs font-semibold tracking-widest uppercase mb-2" style="color: var(--primary)">WHAT I
-                    WORK WITH</p>
-                <h2 class="text-3xl md:text-4xl font-bold">
-                    <span data-translate="skills_title_1">My</span>
-                    <span class="gradient-text" data-translate="skills_title_2">Skills</span>
-                </h2>
-            </div>
-            <p class="max-w-xl mb-12 fade-in text-sm leading-relaxed" style="color: rgba(128,128,128,0.9)"
-                data-translate="skills_description">
-                I've worked with a variety of technologies in web development. Here are some of my core competencies.
-            </p>
-
-            <!-- Marquee strip -->
-            <div class="marquee-wrapper mb-14 fade-in">
-                <div class="marquee-track">
-                    <div class="marquee-content">
-                        <span>React</span><span>ASP.NET</span><span>Node.js</span><span>Laravel</span>
-                        <span>Spring</span><span>Next.js</span><span>PostgreSQL</span><span>MySQL</span>
-                        <span>SSMS</span><span>Oracle</span><span>C#</span><span>Java</span>
-                        <span>PHP</span><span>JavaScript</span><span>REST API</span><span>Figma</span>
-                        <span>DevExpress</span><span>VB.NET</span><span>Docker</span><span>Git</span>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="marquee-content" aria-hidden="true">
-                        <span>React</span><span>ASP.NET</span><span>Node.js</span><span>Laravel</span>
-                        <span>Spring</span><span>Next.js</span><span>PostgreSQL</span><span>MySQL</span>
-                        <span>SSMS</span><span>Oracle</span><span>C#</span><span>Java</span>
-                        <span>PHP</span><span>JavaScript</span><span>REST API</span><span>Figma</span>
-                        <span>DevExpress</span><span>VB.NET</span><span>Docker</span><span>Git</span>
-                    </div>
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-gray-500 border-opacity-10 pb-8">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">
+                        TECHNICAL <span class="gradient-text">ABILITIES</span>
+                    </h2>
                 </div>
+                <p class="max-w-md text-sm leading-relaxed opacity-70 fade-in" data-translate="skills_description">
+                    I've worked with a variety of technologies in web development. Here are some of my core
+                    competencies.
+                </p>
             </div>
 
-            <!-- Bento Grid -->
             <div class="skills-bento">
 
-                <!-- Frontend - Large -->
-                <div class="bento-card bento-lg spotlight-card fade-in" data-delay="0">
+                <div class="bento-card bento-lg spotlight-card fade-in">
                     <div class="bento-icon-row">
-                        <div class="bento-icon"><i class="fas fa-code"></i></div>
-                        <span class="bento-tag">Frontend</span>
+                        <div class="bento-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div>
+                            <span class="bento-tag block">Client Side</span>
+                            <span class="text-xs opacity-50 uppercase tracking-wider font-bold">Frontend
+                                Development</span>
+                        </div>
                     </div>
                     <div class="bento-pills">
-                        <span class="bpill" style="--d:0.05s">React</span>
-                        <span class="bpill" style="--d:0.1s">Next.js</span>
-                        <span class="bpill" style="--d:0.15s">HTML/CSS</span>
-                        <span class="bpill" style="--d:0.2s">JavaScript</span>
-                        <span class="bpill" style="--d:0.25s">DevExpress</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fab fa-react mr-1.5"></i> React</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fas fa-table mr-1.5"></i> Kendo UI</span>
+                        <span class="bpill" style="--d:0.1s"><i class="fab fa-js-square mr-1.5"></i> Next.js</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fab fa-html5 mr-1.5"></i> HTML/CSS</span>
+                        <span class="bpill" style="--d:0.2s"><i class="fab fa-js mr-1.5"></i> JavaScript</span>
+                        <span class="bpill" style="--d:0.25s"><i class="fas fa-layer-group mr-1.5"></i>
+                            DevExpress</span>
+                        <span class="bpill" style="--d:0.3s"><i class="fas fa-wind mr-1.5"></i> Tailwind CSS</span>
                     </div>
                     <div class="bento-glow"></div>
                 </div>
 
-                <!-- Backend - Large -->
-                <div class="bento-card bento-lg spotlight-card fade-in" data-delay="0.1">
+                <div class="bento-card bento-lg spotlight-card fade-in">
                     <div class="bento-icon-row">
-                        <div class="bento-icon"><i class="fas fa-server"></i></div>
-                        <span class="bento-tag">Backend</span>
+                        <div class="bento-icon"><i class="fas fa-cubes"></i></div>
+                        <div>
+                            <span class="bento-tag block">Server Side</span>
+                            <span class="text-xs opacity-50 uppercase tracking-wider font-bold">Backend
+                                Architecture</span>
+                        </div>
                     </div>
                     <div class="bento-pills">
-                        <span class="bpill" style="--d:0.05s">ASP.NET</span>
-                        <span class="bpill" style="--d:0.1s">Node.js</span>
-                        <span class="bpill" style="--d:0.15s">Spring</span>
-                        <span class="bpill" style="--d:0.2s">Laravel</span>
-                        <span class="bpill" style="--d:0.25s">CI</span>
-                        <span class="bpill" style="--d:0.3s">Next.js</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fab fa-microsoft mr-1.5"></i> ASP.NET
+                            Core</span>
+                        <span class="bpill" style="--d:0.1s"><i class="fab fa-node-js mr-1.5"></i> Node.js</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fas fa-leaf mr-1.5"></i> Spring Boot</span>
+                        <span class="bpill" style="--d:0.2s"><i class="fab fa-laravel mr-1.5"></i> Laravel</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fas fa-fire mr-1.5"></i> CodeIgniter</span>
+                        <span class="bpill" style="--d:0.25s"><i class="fas fa-shield-alt mr-1.5"></i> RESTful
+                            API</span>
                     </div>
                     <div class="bento-glow"></div>
                 </div>
 
-                <!-- Database - Medium -->
-                <div class="bento-card bento-md spotlight-card fade-in" data-delay="0.2">
+                <div class="bento-card bento-md spotlight-card fade-in">
                     <div class="bento-icon-row">
                         <div class="bento-icon"><i class="fas fa-database"></i></div>
-                        <span class="bento-tag">Database</span>
+                        <div>
+                            <span class="bento-tag block">Data Storage</span>
+                            <span class="text-xs opacity-50 uppercase tracking-wider font-bold">Databases</span>
+                        </div>
                     </div>
                     <div class="bento-pills">
-                        <span class="bpill" style="--d:0.05s">SSMS</span>
-                        <span class="bpill" style="--d:0.1s">PostgreSQL</span>
-                        <span class="bpill" style="--d:0.15s">MySQL</span>
-                        <span class="bpill" style="--d:0.2s">Oracle</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fas fa-server mr-1.5"></i> SSMS</span>
+                        <span class="bpill" style="--d:0.1s"><i class="fas fa-database mr-1.5"></i> PostgreSQL</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fas fa-database mr-1.5"></i> MySQL</span>
+                        <span class="bpill" style="--d:0.2s"><i class="fas fa-hdd mr-1.5"></i> Oracle</span>
                     </div>
                     <div class="bento-glow"></div>
                 </div>
 
-                <!-- Languages - Medium -->
-                <div class="bento-card bento-md spotlight-card fade-in" data-delay="0.3">
+                <div class="bento-card bento-md spotlight-card fade-in">
                     <div class="bento-icon-row">
                         <div class="bento-icon"><i class="fas fa-terminal"></i></div>
-                        <span class="bento-tag" data-translate="skills_programming">Languages</span>
+                        <div>
+                            <span class="bento-tag block" data-translate="skills_programming">Languages</span>
+                            <span class="text-xs opacity-50 uppercase tracking-wider font-bold">Syntax</span>
+                        </div>
                     </div>
                     <div class="bento-pills">
-                        <span class="bpill" style="--d:0.05s">C#</span>
-                        <span class="bpill" style="--d:0.1s">Java</span>
-                        <span class="bpill" style="--d:0.15s">PHP</span>
-                        <span class="bpill" style="--d:0.2s">JavaScript</span>
-                        <span class="bpill" style="--d:0.25s">VB</span>
-                        <span class="bpill" style="--d:0.3s">C</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fas fa-hashtag mr-1.5"></i> C#</span>
+                        <span class="bpill" style="--d:0.1s"><i class="fab fa-java mr-1.5"></i> Java</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fab fa-php mr-1.5"></i> PHP</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fab fa-python mr-1.5"></i> Python</span>
+                        <span class="bpill" style="--d:0.2s"><i class="fab fa-js mr-1.5"></i> JavaScript</span>
+                        <span class="bpill" style="--d:0.25s"><i class="fas fa-code mr-1.5"></i> VB.NET</span>
                     </div>
                     <div class="bento-glow"></div>
                 </div>
 
-                <!-- Others - Small -->
-                <div class="bento-card bento-sm spotlight-card fade-in" data-delay="0.4">
+                <div class="bento-card bento-lg spotlight-card fade-in md:col-span-6 lg:col-span-6 w-full">
                     <div class="bento-icon-row">
-                        <div class="bento-icon"><i class="fas fa-cogs"></i></div>
-                        <span class="bento-tag" data-translate="skills_others">Others</span>
+                        <div class="bento-icon"><i class="fas fa-tools"></i></div>
+                        <div>
+                            <span class="bento-tag block" data-translate="skills_others">DevOps & Tools</span>
+                            <span class="text-xs opacity-50 uppercase tracking-wider font-bold">Environment &
+                                Workflow</span>
+                        </div>
                     </div>
                     <div class="bento-pills">
-                        <span class="bpill" style="--d:0.05s">REST API</span>
-                        <span class="bpill" style="--d:0.1s">Figma</span>
-                        <span class="bpill" style="--d:0.15s">Git</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fab fa-docker mr-1.5"></i> Docker</span>
+                        <span class="bpill" style="--d:0.1s"><i class="fab fa-git-alt mr-1.5"></i> Git & GitHub</span>
+                        <span class="bpill" style="--d:0.05s"><i class="fab fa-microsoft mr-1.5"></i> Azure
+                            DevOps</span>
+                        <span class="bpill" style="--d:0.15s"><i class="fab fa-figma mr-1.5"></i> Figma</span>
+                        <span class="bpill" style="--d:0.2s"><i class="fas fa-network-wired mr-1.5"></i> RFID System
+                            Integration</span>
+                        <span class="bpill" style="--d:0.25s"><i class="fas fa-project-diagram mr-1.5"></i> UML &
+                            Database Design</span>
                     </div>
                     <div class="bento-glow"></div>
                 </div>
@@ -262,485 +290,802 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">
-                <span data-translate="projects_title_1">Featured</span> <span class="gradient-text"
-                    data-translate="projects_title_2">Projects</span>
-            </h2>
-            <p class="text-center max-w-2xl mx-auto mb-12 fade-in" data-translate="projects_description">
-                Here are some of my notable projects I've worked on. Each project was built with a unique approach to
-                solve specific problems.
-            </p>
+    <section id="projects" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
 
+            <!-- HEADER SECTION (Minimalist Brutalist Style) -->
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-gray-500 border-opacity-10 pb-8">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">
+                        FEATURED <span class="gradient-text">PROJECTS</span>
+                    </h2>
+                </div>
+                <p class="max-w-md text-sm leading-relaxed opacity-70 fade-in" data-translate="projects_description">
+                    Here are some of my notable projects I've worked on. Each project was built with a unique approach
+                    to solve specific problems.
+                </p>
+            </div>
+
+            <!-- CAROUSEL WRAPPER -->
             <div class="relative max-w-6xl mx-auto">
                 <div class="carousel-container overflow-hidden">
                     <div class="carousel-track flex transition-transform duration-500 ease-in-out" id="projectCarousel">
+
+                        <!-- PROJECT 1: Student Journey -->
                         <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="card rounded-xl overflow-hidden fade-in h-full">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="./assets/img/portfolio/Picture1.png" alt="Student Journey project"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2">Student Journey</h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mb-4"
-                                        data-translate="project1_description">
-                                        Recording and managing student activities and activities using RFID technology
-                                        as an identity or identifier.
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Laravel</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">MYSQL</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">RFID</span>
+                            <div class="card rounded-2xl overflow-hidden fade-in h-full flex flex-col justify-between">
+                                <div>
+                                    <div
+                                        class="relative h-48 overflow-hidden border-b border-gray-500 border-opacity-10">
+                                        <img src="./assets/img/portfolio/Picture1.png" alt="Student Journey project"
+                                            class="w-full h-full object-cover project-img">
+                                        <span
+                                            class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-gray-900 bg-opacity-80 rounded-md text-cyan-400 border border-cyan-500 border-opacity-30">
+                                            IoT Integration
+                                        </span>
                                     </div>
-                                    <div class="flex space-x-4">
-                                        <a href="https://github.com/naufalfadh/Student-Journey"
-                                            class="text-primary hover:underline" data-translate="view_code">View
-                                            Code</a>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 text-white tracking-tight">Student Journey
+                                        </h3>
+                                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6"
+                                            data-translate="project1_description">
+                                            Recording and managing student activities and activities using RFID
+                                            technology as an identity or identifier.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <div class="flex flex-wrap gap-1.5 mb-5">
+                                        <span class="proj-pill"><i class="fab fa-laravel text-red-400 text-[10px]"></i>
+                                            Laravel</span>
+                                        <span class="proj-pill"><i
+                                                class="fab fa-microsoft text-blue-400 text-[10px]"></i> ASP.NET</span>
+                                        <span class="proj-pill"><i
+                                                class="fas fa-database text-yellow-500 text-[10px]"></i> MySQL</span>
+                                        <span class="proj-pill"><i
+                                                class="fas fa-id-card text-purple-400 text-[10px]"></i> RFID</span>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-500 border-opacity-10 flex">
+                                        <a href="https://github.com/naufalfadh/Student-Journey" class="proj-link group"
+                                            target="_blank">
+                                            <span data-translate="view_code">View Code</span>
+                                            <i
+                                                class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- PROJECT 2: QC Machining -->
                         <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="card rounded-xl overflow-hidden fade-in h-full">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="./assets/img/portfolio/portfolio-4.jpg" alt="QC Machining project"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2" data-translate="project2_title">Digitalisasi
-                                        Form Inspection Quality Control Machining</h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mb-4"
-                                        data-translate="project2_description">
-                                        Developing a website for product checking and component recording.
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">React.js</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Spring</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">Android Native</span>
+                            <div class="card rounded-2xl overflow-hidden fade-in h-full flex flex-col justify-between">
+                                <div>
+                                    <div
+                                        class="relative h-48 overflow-hidden border-b border-gray-500 border-opacity-10">
+                                        <img src="./assets/img/portfolio/portfolio-4.jpg" alt="QC Machining project"
+                                            class="w-full h-full object-cover project-img">
+                                        <span
+                                            class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-gray-900 bg-opacity-80 rounded-md text-cyan-400 border border-cyan-500 border-opacity-30">
+                                            Manufacturing
+                                        </span>
                                     </div>
-                                    <div class="flex space-x-4">
-                                        <a href="https://github.com/naufalfadh/PROJEK-MII"
-                                            class="text-primary hover:underline" data-translate="view_code">View
-                                            Code</a>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 text-white tracking-tight"
+                                            data-translate="project2_title">Digitalisasi Form Inspection QC</h3>
+                                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6"
+                                            data-translate="project2_description">
+                                            Developing a website for product checking and component recording.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <div class="flex flex-wrap gap-1.5 mb-5">
+                                        <span class="proj-pill"><i class="fab fa-react text-cyan-400 text-[10px]"></i>
+                                            React.js</span>
+                                        <span class="proj-pill"><i class="fas fa-leaf text-green-400 text-[10px]"></i>
+                                            Spring</span>
+                                        <span class="proj-pill"><i class="fas fa-server text-blue-400 text-[10px]"></i>
+                                            SSMS</span>
+                                        <span class="proj-pill"><i
+                                                class="fab fa-android text-emerald-400 text-[10px]"></i> Android
+                                            Native</span>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-500 border-opacity-10 flex">
+                                        <a href="https://github.com/naufalfadh/PROJEK-MII" class="proj-link group"
+                                            target="_blank">
+                                            <span data-translate="view_code">View Code</span>
+                                            <i
+                                                class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- PROJECT 3: AstraHealth -->
                         <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="card rounded-xl overflow-hidden fade-in h-full">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="./assets/img/portfolio/astrahealth.png" alt="AstraHealth project"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2">AstraHealth</h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mb-4"
-                                        data-translate="project3_description">
-                                        Developing a web-based health data management system for the Campus Health Unit.
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
+                            <div class="card rounded-2xl overflow-hidden fade-in h-full flex flex-col justify-between">
+                                <div>
+                                    <div
+                                        class="relative h-48 overflow-hidden border-b border-gray-500 border-opacity-10">
+                                        <img src="./assets/img/portfolio/astrahealth.png" alt="AstraHealth project"
+                                            class="w-full h-full object-cover project-img">
+                                        <span
+                                            class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-gray-900 bg-opacity-80 rounded-md text-cyan-400 border border-cyan-500 border-opacity-30">
+                                            Enterprise App
+                                        </span>
                                     </div>
-                                    <div class="flex space-x-4">
-                                        <a href="https://github.com/naufalfadh/AstraHealth"
-                                            class="text-primary hover:underline" data-translate="view_code">View
-                                            Code</a>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 text-white tracking-tight">AstraHealth</h3>
+                                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6"
+                                            data-translate="project3_description">
+                                            Developing a web-based health data management system for the Campus Health
+                                            Unit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <div class="flex flex-wrap gap-1.5 mb-5">
+                                        <span class="proj-pill"><i
+                                                class="fab fa-microsoft text-blue-400 text-[10px]"></i> ASP.NET</span>
+                                        <span class="proj-pill"><i class="fas fa-server text-blue-400 text-[10px]"></i>
+                                            SSMS</span>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-500 border-opacity-10 flex">
+                                        <a href="https://github.com/naufalfadh/AstraHealth" class="proj-link group"
+                                            target="_blank">
+                                            <span data-translate="view_code">View Code</span>
+                                            <i
+                                                class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- PROJECT 4: Digitalisasi IT -->
                         <div class="carousel-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="card rounded-xl overflow-hidden fade-in h-full">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="./assets/img/portfolio/DigitalisasiIT.png" alt="Digitalisasi IT project"
-                                        class="w-full h-full object-cover">
+                            <div class="card rounded-2xl overflow-hidden fade-in h-full flex flex-col justify-between">
+                                <div>
+                                    <div
+                                        class="relative h-48 overflow-hidden border-b border-gray-500 border-opacity-10">
+                                        <img src="./assets/img/portfolio/DigitalisasiIT.png"
+                                            alt="Digitalisasi IT project"
+                                            class="w-full h-full object-cover project-img">
+                                        <span
+                                            class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-gray-900 bg-opacity-80 rounded-md text-cyan-400 border border-cyan-500 border-opacity-30">
+                                            Internal Tools
+                                        </span>
+                                    </div>
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-3 text-white tracking-tight">Digitalisasi IT
+                                        </h3>
+                                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6"
+                                            data-translate="project4_description">
+                                            Digitizing a job application and approval where the work is done through a
+                                            paper form then digitizing it by creating a website.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2">Digitalisasi IT</h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mb-4"
-                                        data-translate="project4_description">
-                                        Digitizing a job application and approval where the work is done through a paper
-                                        form then digitizing it by creating a website.
-                                    </p>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">ASP.NET</span>
-                                        <span class="skill-pill px-3 py-1 rounded-full text-sm">SSMS</span>
+                                <div class="p-6 pt-0">
+                                    <div class="flex flex-wrap gap-1.5 mb-5">
+                                        <span class="proj-pill"><i
+                                                class="fab fa-microsoft text-blue-400 text-[10px]"></i> ASP.NET</span>
+                                        <span class="proj-pill"><i class="fas fa-server text-blue-400 text-[10px]"></i>
+                                            SSMS</span>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-500 border-opacity-10 flex">
+                                        <span class="text-xs text-gray-500 italic flex items-center gap-1">
+                                            <i class="fas fa-lock text-[10px]"></i> Internal Repository
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
+                <!-- CAROUSEL NAVIGATION CONTROLS -->
                 <button
-                    class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-10"
+                    class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-6 bg-gray-800 bg-opacity-80 backdrop-blur-md rounded-full p-3 shadow-xl hover:bg-gray-700 transition-all z-20 border border-gray-700"
                     id="prevBtn">
-                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                    <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
                         </path>
                     </svg>
                 </button>
                 <button
-                    class="carousel-btn carousel-btn-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-10"
+                    class="carousel-btn carousel-btn-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-6 bg-gray-800 bg-opacity-80 backdrop-blur-md rounded-full p-3 shadow-xl hover:bg-gray-700 transition-all z-20 border border-gray-700"
                     id="nextBtn">
-                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
 
-                <div class="flex justify-center mt-8 space-x-2" id="dotsContainer">
-                    <button class="dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all"
-                        data-slide="0"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all"
-                        data-slide="1"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all"
-                        data-slide="2"></button>
-                    <button class="dot w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all"
-                        data-slide="3"></button>
+                <!-- DOTS -->
+                <div class="flex justify-center mt-10 space-x-2" id="dotsContainer">
+                    <button class="dot w-2.5 h-2.5 rounded-full bg-gray-700 transition-all" data-slide="0"></button>
+                    <button class="dot w-2.5 h-2.5 rounded-full bg-gray-700 transition-all" data-slide="1"></button>
+                    <button class="dot w-2.5 h-2.5 rounded-full bg-gray-700 transition-all" data-slide="2"></button>
+                    <button class="dot w-2.5 h-2.5 rounded-full bg-gray-700 transition-all" data-slide="3"></button>
                 </div>
             </div>
 
-            <div class="text-center mt-12 fade-in">
-                <a href="https://github.com/naufalfadh"
-                    class="inline-block px-8 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all"
-                    data-translate="view_all_projects">
-                    View All Projects
+            <!-- VIEW ALL FOOTER LINK -->
+            <div class="text-center mt-14 fade-in">
+                <a href="https://github.com/naufalfadh" target="_blank"
+                    class="inline-block px-8 py-3.5 border border-gray-700 text-gray-200 rounded-xl font-semibold hover:border-cyan-400 hover:text-cyan-400 hover:shadow-lg hover:shadow-cyan-500/5 transition-all text-sm">
+                    <i class="fab fa-github mr-2"></i> View All Repositories
                 </a>
             </div>
+
         </div>
     </section>
 
     <!-- ======================== EXPERIENCE & EDUCATION SECTION ======================== -->
-    <section id="experience" class="py-20 bg-opacity-20" style="background-color: rgba(var(--card-bg), 0.2)">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center fade-in">
-                <span data-translate="exp_section_title_1">My</span> <span class="gradient-text"
-                    data-translate="exp_section_title_2">Journey</span>
-            </h2>
-            <p class="text-center max-w-2xl mx-auto mb-10 fade-in" data-translate="exp_section_description">
-                My professional experience and educational background in the tech industry.
-            </p>
+    <section id="experience" class="py-24 relative overflow-hidden bg-opacity-20"
+        style="background-color: rgba(var(--card-bg), 0.2)">
+        <div class="container mx-auto px-6 relative z-10">
 
-            <!-- Tab Toggle Buttons -->
-            <div class="flex justify-center mb-12 fade-in">
-                <div class="tab-toggle-group">
-                    <button id="tab-work" class="tab-toggle-btn tab-active" onclick="switchTab('work')">
-                        <i class="fas fa-briefcase mr-2"></i>
+            <!-- HEADER SECTION -->
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-gray-500 border-opacity-10 pb-8">
+                <div class="fade-in">
+
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">
+                        PROFESSIONAL <span class="gradient-text">JOURNEY</span>
+                    </h2>
+                </div>
+                <p class="max-w-md text-sm leading-relaxed opacity-70 fade-in" data-translate="exp_section_description">
+                    My professional experience and educational background in the tech industry.
+                </p>
+            </div>
+
+            <!-- TAB TOGGLE NAVIGATION (Upgraded for Better UI/UX Affordance) -->
+            <div class="flex justify-center mb-16 fade-in">
+                <div
+                    class="tab-toggle-group p-1.5 bg-gray-900 bg-opacity-50 rounded-2xl border border-gray-800 flex gap-2">
+                    <button id="tab-work"
+                        class="tab-toggle-btn tab-active cursor-pointer transition-all duration-300 px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2"
+                        onclick="switchTab('work')" aria-label="View Work Experience">
+                        <i class="fas fa-briefcase text-xs"></i>
                         <span data-translate="tab_work">Work Experience</span>
                     </button>
-                    <button id="tab-edu" class="tab-toggle-btn" onclick="switchTab('edu')">
-                        <i class="fas fa-graduation-cap mr-2"></i>
-                        <span data-translate="tab_edu">Education & Organizations</span>
+                    <button id="tab-edu"
+                        class="tab-toggle-btn cursor-pointer transition-all duration-300 px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 opacity-60 hover:opacity-100"
+                        onclick="switchTab('edu')" aria-label="View Education and Organizations">
+                        <i class="fas fa-graduation-cap text-xs"></i>
+                        <span data-translate="tab_edu">Education & Orgs</span>
                     </button>
                 </div>
             </div>
 
             <!-- WORK EXPERIENCE PANEL -->
-            <div id="panel-work" class="tab-panel">
-                <div class="relative pl-8 timeline">
-                    <!-- Experience 0 -->
-                    <div class="relative mb-12 fade-in">
+            <div id="panel-work" class="tab-panel max-w-4xl mx-auto">
+                <div class="relative pl-6 md:pl-8 timeline">
+
+                    <!-- Experience 0: PT GS Battery (Contract) -->
+                    <div class="relative mb-14 fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold">Application Development Support</h3>
-                                <span class="md:ml-4 text-primary" data-translate="exp0_period">Nov 2025 - April
-                                    2026</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-cyan-400 px-2 py-0.5 bg-cyan-500 bg-opacity-10 rounded border border-cyan-500 border-opacity-20 inline-block mb-1">
+                                        Enterprise App Support
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight">Application
+                                        Development Support</h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="exp0_period">
+                                    Nov 2025 - April 2026
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-2">PT GS Battery Indonesia</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4" data-translate="exp0_role">Contract Based.
-                            </p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="exp0_task1">Analyze, fix bugs, and develop new features as needed by
-                                    the CS team</li>
-                                <li data-translate="exp0_task2">Provide technical support for internal users and
-                                    customers experiencing technical problems</li>
-                                <li data-translate="exp0_task3">Analyze customer needs and translate them into software
-                                    solutions</li>
-                                <li data-translate="exp0_task4">Collaborate with IT Developer and Customer Experience
-                                    teams in improving service systems</li>
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-building text-xs"></i> PT GS Battery Indonesia <span
+                                    class="text-xs opacity-50 font-normal">| Contract Based</span>
+                            </h4>
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-blue-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp0_task1">Analyze, fix bugs, and develop new features as
+                                        needed by the CS team.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-blue-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp0_task2">Provide technical support for internal users and
+                                        customers experiencing technical problems.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-blue-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp0_task3">Analyze customer needs and translate them into
+                                        software solutions.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-blue-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp0_task4">Collaborate with IT Developer and Customer
+                                        Experience teams in improving service systems.</span></li>
                             </ul>
                         </div>
                     </div>
-                    <!-- Experience 1 -->
-                    <div class="relative mb-12 fade-in">
+
+                    <!-- Experience 1: PT GS Battery (Internship) -->
+                    <div class="relative mb-14 fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold">.NET Developer</h3>
-                                <span class="md:ml-4 text-primary" data-translate="exp1_period">Des 2024 - Juni
-                                    2025</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-purple-400 px-2 py-0.5 bg-purple-500 bg-opacity-10 rounded border border-purple-500 border-opacity-20 inline-block mb-1">
+                                        Fullstack Migration Specialist
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight">.NET Developer
+                                    </h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="exp1_period">
+                                    Dec 2024 - Jun 2025
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-2">PT GS Battery Indonesia</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4" data-translate="exp1_role">Internship
-                                Fullstack Developer.</p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="exp1_task1">Migrating applications from VB.NET to ASP.NET</li>
-                                <li data-translate="exp1_task2">Creating websites using .NET and SQL Server with
-                                    DevExpress UI components</li>
-                                <li data-translate="exp1_task3">Releasing MAUI applications to Android TV</li>
-                                <li data-translate="exp1_task4">Developing RESTful API</li>
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-building text-xs"></i> PT GS Battery Indonesia <span
+                                    class="text-xs opacity-50 font-normal">| Internship Fullstack Developer</span>
+                            </h4>
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-purple-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp1_task1">Migrating applications from VB.NET to
+                                        ASP.NET.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-purple-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp1_task2">Creating websites using .NET and SQL Server with
+                                        DevExpress UI components.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-purple-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp1_task3">Releasing MAUI applications to Android TV.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-purple-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp1_task4">Developing RESTful API.</span></li>
                             </ul>
                         </div>
                     </div>
-                    <!-- Experience 2 -->
-                    <div class="relative mb-12 fade-in" style="animation-delay: 0.2s">
+
+                    <!-- Experience 2: AHM -->
+                    <div class="relative mb-14 fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold" data-translate="exp2_title">Fullstack Developer -
-                                    Project Based</h3>
-                                <span class="md:ml-4 text-primary" data-translate="exp2_period">Sep 2024 - Nov
-                                    2024</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-emerald-400 px-2 py-0.5 bg-emerald-500 bg-opacity-10 rounded border border-emerald-500 border-opacity-20 inline-block mb-1">
+                                        Legacy Application Migration
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight"
+                                        data-translate="exp2_title">Fullstack Developer - Project Based</h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="exp2_period">
+                                    Sep 2024 - Nov 2024
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-2">Astra Honda Motor</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4" data-translate="exp2_role">
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-building text-xs"></i> Astra Honda Motor <span
+                                    class="text-xs opacity-50 font-normal">| Project Based</span>
+                            </h4>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4" data-translate="exp2_role">
                                 Migrating legacy applications, monitoring IP document uploads, ensuring part change
                                 information is monitored, supporting PQE decisions.
                             </p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="exp2_task1">Migration results from the legacy system used by the PQE
-                                    department to upload and monitor IP (Part Information) data from Excel documents.
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-emerald-400 mt-1 flex-shrink-0"></i>
+                                    <span data-translate="exp2_task1">Migration results from the legacy system used by
+                                        the PQE department to upload and monitor IP (Part Information) data from Excel
+                                        documents.</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <!-- Experience 3 -->
-                    <div class="relative fade-in" style="animation-delay: 0.4s">
+
+                    <!-- Experience 3: Telkom Akses -->
+                    <div class="relative fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold" data-translate="exp3_title">Waspang Staff</h3>
-                                <span class="md:ml-4 text-primary" data-translate="exp3_period">Des 2021 - Nov
-                                    2022</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-amber-400 px-2 py-0.5 bg-amber-500 bg-opacity-10 rounded border border-amber-500 border-opacity-20 inline-block mb-1">
+                                        Infrastructure & Network Mapping
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight"
+                                        data-translate="exp3_title">Waspang Staff</h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="exp3_period">
+                                    Des 2021 - Nov 2022
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-2">PT Telkom Akses Indonesia</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4" data-translate="exp3_role">Mapping new
-                                networks and moving old networks.</p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="exp3_task1">Making drawings of a building and layout of a network
-                                    path in AutoCad.</li>
-                                <li data-translate="exp3_task2">Mapping points from network creation and external
-                                    network mapping on Google Earth.</li>
-                                <li data-translate="exp3_task3">Supervision of network construction carried out by
-                                    technicians in the field.</li>
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-building text-xs"></i> PT Telkom Akses Indonesia <span
+                                    class="text-xs opacity-50 font-normal">| Infrastructure Division</span>
+                            </h4>
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-amber-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp3_task1">Making drawings of a building and layout of a
+                                        network path in AutoCad.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-amber-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp3_task2">Mapping points from network creation and external
+                                        network mapping on Google Earth.</span></li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-code-branch text-xs text-amber-400 mt-1 flex-shrink-0"></i> <span
+                                        data-translate="exp3_task3">Supervision of network construction carried out by
+                                        technicians in the field.</span></li>
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- EDUCATION PANEL -->
-            <div id="panel-edu" class="tab-panel hidden">
-                <div class="relative pl-8 timeline">
+            <!-- EDUCATION & ORGANIZATIONS PANEL -->
+            <div id="panel-edu" class="tab-panel hidden max-w-4xl mx-auto">
+                <div class="relative pl-6 md:pl-8 timeline">
+
                     <!-- Education 1 -->
-                    <div class="relative mb-12 fade-in">
+                    <div class="relative mb-14 fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold" data-translate="edu1_title">D3 Informatics Management
-                                </h3>
-                                <span class="md:ml-4 text-primary" data-translate="edu1_period">Sep 2022 – Jul
-                                    2025</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-blue-400 px-2 py-0.5 bg-blue-500 bg-opacity-10 rounded border border-blue-500 border-opacity-20 inline-block mb-1">
+                                        Higher Education
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight"
+                                        data-translate="edu1_title">D3 Informatics Management</h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="edu1_period">
+                                    Sep 2022 – Jul 2025
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-1">Astratech – Bekasi, West Java</h4>
-                            <p class="text-sm text-primary font-medium mb-3" data-translate="edu1_gpa">GPA: 3.44 / 4.00
-                            </p>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4" data-translate="edu1_desc">
+                            <h4 class="text-base font-bold text-blue-400 mb-2 flex items-center gap-2">
+                                <i class="fas fa-university text-xs"></i> Astratech – Bekasi, West Java
+                            </h4>
+                            <div class="text-sm font-black text-emerald-400 mb-4" data-translate="edu1_gpa">GPA: 3.44 /
+                                4.00</div>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-5" data-translate="edu1_desc">
                                 Full Scholarship Recipient from Astra Group through AHEMCE Group Komatsu
                                 Reimanufacturing Asia.
                             </p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="edu1_cert1">MikroTik Certified Network Associate (MTCNA) – 2024</li>
-                                <li data-translate="edu1_cert2">Data Science Fundamental Certification – 2024</li>
-                                <li data-translate="edu1_cert3">AI Ignition Certification – 2024</li>
-                            </ul>
+                            <div class="flex flex-wrap gap-2 pt-4 border-t border-gray-500 border-opacity-10">
+                                <span class="proj-pill text-[11px]"><i class="fas fa-certificate text-cyan-400"></i>
+                                    MTCNA (2024)</span>
+                                <span class="proj-pill text-[11px]"><i class="fas fa-certificate text-cyan-400"></i>
+                                    Data Science Fundamental</span>
+                                <span class="proj-pill text-[11px]"><i class="fas fa-certificate text-cyan-400"></i> AI
+                                    Ignition Cert</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Organization 1 -->
-                    <div class="relative mb-12 fade-in" style="animation-delay: 0.2s">
+                    <!-- Org 1 -->
+                    <div class="relative mb-14 fade-in">
                         <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold" data-translate="org1_title">Jurnalistik Astratech</h3>
-                                <span class="md:ml-4 text-primary" data-translate="org1_period">Jan 2023 – Jan
-                                    2024</span>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-pink-400 px-2 py-0.5 bg-pink-500 bg-opacity-10 rounded border border-pink-500 border-opacity-20 inline-block mb-1">
+                                        Media & Publication
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight"
+                                        data-translate="org1_title">Jurnalistik Astratech</h3>
+                                </div>
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="org1_period">
+                                    Jan 2023 – Jan 2024
+                                </span>
                             </div>
-                            <h4 class="text-lg font-medium mb-3" data-translate="org1_role">Member – Campus Journalism
-                                Organization</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="org1_task1">Covering and writing news related to campus activities
-                                    and issues, published via UKM's official bulletin, website, or social media.</li>
-                                <li data-translate="org1_task2">Creating creative content such as photos, videos, and
-                                    publication materials to support news coverage and documentation of campus
-                                    activities.</li>
-                                <li data-translate="org1_task3">Organizing journalism training and workshops to improve
-                                    writing, photography, and editing skills of members.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Organization 2 -->
-                    <div class="relative fade-in" style="animation-delay: 0.4s">
-                        <div class="timeline-item"></div>
-                        <div class="card rounded-xl p-6 ml-8">
-                            <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                <h3 class="text-xl font-semibold" data-translate="org2_title">Astra Gema Islami (AGI)
-                                </h3>
-                                <span class="md:ml-4 text-primary" data-translate="org2_period">Jan 2024 –
-                                    Present</span>
-                            </div>
-                            <h4 class="text-lg font-medium mb-3" data-translate="org2_role">Member – Islamic
-                                Organization</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-500 dark:text-gray-400">
-                                <li data-translate="org2_task1">Assist in the implementation of each event held by AGI
-                                    each year.</li>
-                                <li data-translate="org2_task2">Coordinate with food vendors to ensure timely delivery.
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-users text-xs"></i> Member – Campus Journalism Organization
+                            </h4>
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-pink-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org1_task1">Covering and writing news related to campus
+                                        activities and issues.</span>
                                 </li>
-                                <li data-translate="org2_task3">Manage and supervise culinary bazaar stands and be
-                                    responsible for overseeing food supply and distribution.</li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-pink-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org1_task2">Creating creative content such as photos, videos,
+                                        and publication materials.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-pink-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org1_task3">Organizing journalism training and
+                                        workshops.</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </section>
-
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-5xl mx-auto">
-                <!-- Header -->
-                <p class="text-sm font-semibold tracking-widest uppercase mb-2 fade-in" style="color: var(--primary)">
-                    CONTACT</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 fade-in" data-translate="contact_title_main">
-                    Let's work together
-                </h2>
-
-                <div class="flex flex-col md:flex-row gap-12">
-
-                    <!-- Find Me On - Full Width Horizontal -->
-                    <div class="w-full fade-in">
-                        <p class="text-xs font-semibold tracking-widest uppercase mb-5" style="color: var(--primary)">
-                            FIND ME ON</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-
-                            <!-- LinkedIn -->
-                            <a href="https://www.linkedin.com/in/naufal-fadhlurrohman21/" target="_blank"
-                                class="social-card flex items-center justify-between px-4 py-3 rounded-xl border transition-all hover:shadow-md group"
-                                style="background: var(--card-bg); border-color: rgba(128,128,128,0.15)">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                                        style="background: rgba(58,134,255,0.1)">
-                                        <i class="fab fa-linkedin-in text-sm" style="color: var(--primary)"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-semibold">LinkedIn</p>
-                                        <p class="text-xs" style="color: rgba(128,128,128,0.8)">naufal-fadhlurrohman21
-                                        </p>
-                                    </div>
+                    <!-- Org 2 -->
+                    <div class="relative fade-in">
+                        <div class="timeline-item"></div>
+                        <div class="card rounded-2xl p-6 md:p-8 ml-6 md:ml-8 transition-all">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-green-400 px-2 py-0.5 bg-green-500 bg-opacity-10 rounded border border-green-500 border-opacity-20 inline-block mb-1">
+                                        Community Service
+                                    </span>
+                                    <h3 class="text-xl md:text-2xl font-black text-white tracking-tight"
+                                        data-translate="org2_title">Astra Gema Islami (AGI)</h3>
                                 </div>
-                                <i class="fas fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 transition-opacity"
-                                    style="color: var(--primary)"></i>
-                            </a>
-
-                            <!-- GitHub -->
-                            <a href="https://github.com/naufalfadh" target="_blank"
-                                class="social-card flex items-center justify-between px-4 py-3 rounded-xl border transition-all hover:shadow-md group"
-                                style="background: var(--card-bg); border-color: rgba(128,128,128,0.15)">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                                        style="background: rgba(58,134,255,0.1)">
-                                        <i class="fab fa-github text-sm" style="color: var(--primary)"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-semibold">GitHub</p>
-                                        <p class="text-xs" style="color: rgba(128,128,128,0.8)">naufalfadh</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 transition-opacity"
-                                    style="color: var(--primary)"></i>
-                            </a>
-
-                            <!-- WhatsApp -->
-                            <a href="https://wa.me/6282121686379/" target="_blank"
-                                class="social-card flex items-center justify-between px-4 py-3 rounded-xl border transition-all hover:shadow-md group"
-                                style="background: var(--card-bg); border-color: rgba(128,128,128,0.15)">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                                        style="background: rgba(58,134,255,0.1)">
-                                        <i class="fab fa-whatsapp text-sm" style="color: var(--primary)"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-semibold">WhatsApp</p>
-                                        <p class="text-xs" style="color: rgba(128,128,128,0.8)">+6282121686379</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 transition-opacity"
-                                    style="color: var(--primary)"></i>
-                            </a>
-
-                            <!-- Instagram -->
-                            <a href="https://www.instagram.com/fadlurahmannn_" target="_blank"
-                                class="social-card flex items-center justify-between px-4 py-3 rounded-xl border transition-all hover:shadow-md group"
-                                style="background: var(--card-bg); border-color: rgba(128,128,128,0.15)">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                                        style="background: rgba(58,134,255,0.1)">
-                                        <i class="fab fa-instagram text-sm" style="color: var(--primary)"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-semibold">Instagram</p>
-                                        <p class="text-xs" style="color: rgba(128,128,128,0.8)">@fadlurahmannn_</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 transition-opacity"
-                                    style="color: var(--primary)"></i>
-                            </a>
-
-                            <!-- Email -->
-                            <a href="mailto:fadlurahman03@gmail.com"
-                                class="social-card flex items-center justify-between px-4 py-3 rounded-xl border transition-all hover:shadow-md group"
-                                style="background: var(--card-bg); border-color: rgba(128,128,128,0.15)">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                                        style="background: rgba(58,134,255,0.1)">
-                                        <i class="fas fa-envelope text-sm" style="color: var(--primary)"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-semibold">Email</p>
-                                        <p class="text-xs" style="color: rgba(128,128,128,0.8)">fadlurahman03@gmail.com
-                                        </p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 transition-opacity"
-                                    style="color: var(--primary)"></i>
-                            </a>
-
+                                <span
+                                    class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-800 px-3 py-1 rounded-md border border-gray-700 h-max w-max"
+                                    data-translate="org2_period">
+                                    Jan 2024 – Present
+                                </span>
+                            </div>
+                            <h4 class="text-base font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-users text-xs"></i> Member – Islamic Organization
+                            </h4>
+                            <ul class="space-y-2.5 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-green-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org2_task1">Assist in the implementation of each event held by
+                                        AGI each year.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-green-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org2_task2">Coordinate with food vendors to ensure timely
+                                        delivery.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5"><i
+                                        class="fas fa-arrow-right text-[10px] text-green-400 mt-1.5 flex-shrink-0"></i>
+                                    <span data-translate="org2_task3">Manage and supervise culinary bazaar stands and
+                                        distribution.</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                 </div>
             </div>
+
         </div>
     </section>
 
-    <footer class="py-8 border-t border-gray-200 dark:border-gray-700">
-        <div class="container mx-auto px-6 text-center">
-            <p data-translate="footer_copyright">© 2026 Naufal Fadhlurrohman.</p>
+
+    <!-- ======================== LIVE API TERMINAL SIMULATOR ======================== -->
+    <section id="terminal-simulation" class="py-20 relative overflow-hidden bg-gray-950">
+        <div class="container mx-auto px-6 relative z-10">
+
+            <!-- Section Header -->
+            <div class="max-w-3xl mx-auto text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-black text-white">INTERACTIVE <span class="gradient-text">BACKEND
+                        SIMULATOR</span></h2>
+                <p class="text-gray-400 text-xs md:text-sm mt-3">
+                    Click the endpoints below to simulate live .NET Web API requests and inspect real-time system
+                    responses.
+                </p>
+            </div>
+
+            <!-- Terminal Workspace Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-6xl mx-auto items-stretch">
+
+                <!-- LEFT: Endpoint Controller (4 Cols) -->
+                <div class="lg:col-span-4 flex flex-col gap-3 justify-center fade-in">
+                    <span class="text-xs font-bold tracking-wider text-gray-500 uppercase px-1 mb-1">Select
+                        Endpoint:</span>
+
+                    <button class="api-btn active-btn" onclick="triggerApiSim('get-profile', this)">
+                        <span class="method get">GET</span>
+                        <span class="endpoint">/v1/dev/profile</span>
+                    </button>
+
+                    <button class="api-btn" onclick="triggerApiSim('post-qc', this)">
+                        <span class="method post">POST</span>
+                        <span class="endpoint">/v1/factory/qc-form</span>
+                    </button>
+
+                    <button class="api-btn" onclick="triggerApiSim('get-iot', this)">
+                        <span class="method get">GET</span>
+                        <span class="endpoint">/v1/hardware/rfid-log</span>
+                    </button>
+
+                    <button class="api-btn" onclick="triggerApiSim('patch-infra', this)">
+                        <span class="method patch">PATCH</span>
+                        <span class="endpoint">/v1/infra/azure-devops</span>
+                    </button>
+                </div>
+
+                <!-- RIGHT: Code IDE / Terminal Window (8 Cols) -->
+                <div class="lg:col-span-8 flex flex-col fade-in">
+                    <div
+                        class="w-full bg-[#0d1117] rounded-2xl border border-gray-800 shadow-2xl flex flex-col h-[380px] overflow-hidden">
+
+                        <!-- Terminal Top Mac-style Bar -->
+                        <div
+                            class="bg-[#161b22] px-4 py-3 border-b border-gray-800 flex items-center justify-between flex-shrink-0">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                <span class="text-xs text-gray-500 font-mono ml-2">dotnet-run-portfolio.service</span>
+                            </div>
+                            <span
+                                class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-mono uppercase tracking-widest animate-pulse"
+                                id="api-status">
+                                HTTP 200 OK
+                            </span>
+                        </div>
+
+                        <!-- Terminal Output Console -->
+                        <div class="p-5 font-mono text-xs md:text-sm overflow-y-auto flex-grow bg-[#0d1117] text-gray-300 relative"
+                            id="terminal-console">
+                            <pre id="json-output" class="text-cyan-400 leading-relaxed"></pre>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+    </section>
+
+    <!-- ======================== SCROLL-DRIVEN TEXT REVEAL SECTION ======================== -->
+    <section class="scroll-reveal-container">
+        <div class="scroll-reveal-sticky shadow-inner">
+            <div
+                class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 h-full">
+
+                <!-- Left Side: Static Bold Text -->
+                <div class="w-full md:w-1/2 text-center md:text-right">
+                    <h2
+                        class="text-6xl md:text-8xl font-black text-gray-700 dark:text-gray-500 tracking-tighter select-none uppercase">
+                        I CODE
+                    </h2>
+                </div>
+
+                <!-- Right Side: Animated Dynamic Text Stack -->
+                <div
+                    class="w-full md:w-1/2 text-center md:text-left relative h-20 md:h-32 flex items-center justify-center md:justify-start overflow-hidden">
+                    <div class="reveal-text-stack w-full">
+                        <span class="reveal-word font-black text-5xl md:text-7xl tracking-tight block uppercase"
+                            style="color: var(--primary)">SOLUTIONS.</span>
+                        <span class="reveal-word font-black text-5xl md:text-7xl tracking-tight block uppercase"
+                            style="color: var(--secondary)">ENTERPRISE.</span>
+                        <span class="reveal-word font-black text-5xl md:text-7xl tracking-tight block uppercase"
+                            style="color: var(--primary)">INNOVATION.</span>
+                        <span class="reveal-word font-black text-5xl md:text-7xl tracking-tight block uppercase"
+                            style="color: var(--secondary)">SYSTEM.</span>
+                        <span
+                            class="reveal-word font-black text-5xl md:text-7xl tracking-tight block uppercase gradient-text">SCALABILITY.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== RETRO DINO ARCADE STATION ======================== -->
+    <section id="arcade-game" class="py-16 relative overflow-hidden bg-gray-950 border-t border-white border-opacity-5">
+        <div class="container mx-auto px-6 relative z-10">
+
+            <!-- Section Header -->
+            <div class="max-w-3xl mx-auto text-center mb-8 fade-in">
+                <h2 class="text-3xl md:text-4xl font-black text-white">OFFLINE <span class="gradient-text">ARCADE
+                        STATION</span></h2>
+                <p class="text-gray-400 text-xs md:text-sm mt-2">
+                    Need a break? Press <kbd
+                        class="px-2 py-1 bg-gray-800 rounded text-xs border border-gray-700 text-white font-mono">SPACE</kbd>
+                    or tap the screen to jump!
+                </p>
+            </div>
+
+            <!-- Arcade Machine Wrapper (Ukuran Besar & Lega) -->
+            <div
+                class="max-w-2xl mx-auto bg-[#16213e] rounded-2xl border border-white border-opacity-5 p-4 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)] fade-in">
+
+                <!-- Console Top Info Bar -->
+                <div
+                    class="flex justify-between items-center mb-4 font-mono text-xs border-b border-white border-opacity-5 pb-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                        <span class="font-bold uppercase text-gray-300">SCORE: <span id="dino-score"
+                                class="text-cyan-400 font-black">00000</span></span>
+                    </div>
+                    <div class="text-gray-500 font-bold uppercase">
+                        HI-SCORE: <span id="dino-highscore" class="text-purple-400">00000</span>
+                    </div>
+                </div>
+
+                <!-- Main Canvas Stage (Kembali ke Tinggi Lega 180px) -->
+                <div class="relative w-full bg-[#0d1117] rounded-xl border border-gray-800 overflow-hidden select-none touch-none h-[180px]"
+                    id="game-stage">
+                    <canvas id="dinoCanvas" class="w-full h-full block"></canvas>
+
+                    <!-- Start / Game Over Overlay Menu -->
+                    <div id="game-overlay"
+                        class="absolute inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center text-center p-4 transition-opacity duration-300">
+                        <div id="overlay-icon" class="text-3xl text-cyan-400 mb-2 animate-bounce">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 id="overlay-title" class="text-sm font-black text-white uppercase tracking-wider font-mono">
+                            PRESS SPACE TO PLAY</h3>
+                        <p id="overlay-desc" class="text-[10px] text-gray-500 font-mono mt-0.5">or click inside this box
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mobile Controls Helper -->
+                <div class="sm:hidden mt-4">
+                    <button id="mobile-jump-btn"
+                        class="w-full py-3 bg-[#1a1a2e] border border-cyan-500/30 text-cyan-400 rounded-xl font-bold font-mono active:scale-95 transition-all text-xs">
+                        <i class="fas fa-arrow-up mr-1"></i> TAP TO JUMP <i class="fas fa-arrow-up ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======================== COMPACT CONTACT SECTION (EXISTING ICONS) ======================== -->
+    <section id="contact" class="py-12 relative overflow-hidden bg-gray-950 border-t border-white border-opacity-5">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="max-w-xl mx-auto space-y-4 fade-in">
+                <div>
+                    <h3 class="text-2xl font-black text-white uppercase tracking-tight"
+                        data-translate="contact_title_main">Let's work together</h3>
+                </div>
+
+                <!-- Clean Horizontal Social Cards Bar (Rapat, Tanpa Form Input) -->
+                <div class="flex items-center justify-center gap-4 pt-2 text-xl">
+                    <a href="https://www.linkedin.com/in/naufal-fadhlurrohman21/" target="_blank"
+                        class="w-11 h-11 rounded-xl bg-[#16213e] border border-white border-opacity-5 flex items-center justify-center text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all shadow-md"
+                        title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/naufalfadh" target="_blank"
+                        class="w-11 h-11 rounded-xl bg-[#16213e] border border-white border-opacity-5 flex items-center justify-center text-gray-400 hover:text-purple-400 hover:border-purple-500/30 hover:scale-110 transition-all shadow-md"
+                        title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://wa.me/6282121686379/" target="_blank"
+                        class="w-11 h-11 rounded-xl bg-[#16213e] border border-white border-opacity-5 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:border-emerald-500/30 hover:scale-110 transition-all shadow-md"
+                        title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:fadlurahman03@gmail.com"
+                        class="w-11 h-11 rounded-xl bg-[#16213e] border border-white border-opacity-5 flex items-center justify-center text-gray-400 hover:text-red-400 hover:border-red-500/30 hover:scale-110 transition-all shadow-md"
+                        title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="py-8 border-t border-white border-opacity-5 bg-[#1a1a2e]">
+        <div class="w-full px-4 md:px-6 text-left">
+            <p data-translate="footer_copyright" class="text-xs text-gray-500 font-mono">
+                © 2026 Naufal Fadhlurrohman. All Rights Reserved.
+            </p>
+        </div>
+
         <button id="back-to-top" title="Back to Top">
             <i class="fas fa-chevron-up"></i>
         </button>
